@@ -38,8 +38,8 @@ class ConsoleTimeMemory:
 
 
 def get_task_name(path):
-    lab_directory = os.path.basename(os.path.dirname(os.path.dirname(path)))
-    task_directory = os.path.basename(os.path.dirname(path))
-    task_num = int(task_directory.split('_')[-1])
+    lab_directory = os.path.basename(os.path.dirname(path))
+    task_directory = os.path.basename(path)
+    task_num = int(task_directory[4:])
 
     return f'{lab_directory}. Task {task_num}'

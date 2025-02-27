@@ -40,19 +40,17 @@ def lec_from_i(lst, i):
 #         cache_start[i] = maxi
 
 
-
-
-def lections_schedules(n, lst):
+def solution(lst):
     lst.sort(key=lambda x: x[0])
-    res = 0
-    for i in range(n):
+    res = 1
+    for i in range(len(lst)):
         res = max(lec_from_i(lst, i), res)
     return res
 
 
 def main():
     n, lst = read_n_pairs_file(os.path.join(PATH, 'input.txt'))
-    res = lections_schedules(n, lst)
+    res = solution(lst)
     write_file(os.path.join(PATH, 'output.txt'), res)
 
 
