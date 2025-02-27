@@ -12,17 +12,20 @@ def read_lst_file(path, func, sep=" "):
     return lst
 
 
-def read_len_lst_file(path, func):
+def read_n_pairs_file(path):
     with open(path, 'r') as inp:
-        n = int(inp.readline()) 
-        lst = [func(i) for i in inp.readline().split()]
+        n = int(inp.readline())
+        lst = []
+        for _ in range(n):
+            a, b = map(int, inp.readline().split())
+            lst.append((a, b))
     return n, lst
 
 
 def read_lst_value_file(path, func):
     with open(path, 'r') as inp:
         lst = [func(i) for i in inp.readline().split()]
-        v = int(inp.readline()) 
+        v = int(inp.readline())
     return lst, v
 
 
