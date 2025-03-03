@@ -1,12 +1,12 @@
 import unittest
 import sys
 import os
-from random import shuffle
+from random import randint
 
 PATH = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(PATH, '..', '..'))
 
-from Lab1.Task8.main import solution
+from Lab1.Task16.main import solution
 from test_utils import (
     ConsoleTimeMemory as TM, 
     get_task_name,
@@ -17,17 +17,13 @@ from test_utils import (
 class TestCaseInsertionSort(unittest.TestCase):
     def test_1(self):
         # given
-        inp = [(1, 5), (2, 3), (3, 4)]
-        expected_res = 2
-        # when
-        res = solution(inp)
-        # then
-        self.assertEqual(res, expected_res)
-
-    def test_2(self):
-        # given
-        inp = [(5, 10)]
-        expected_res = 1
+        inp = [
+            [0, 183, 163, 173, 181],
+            [183, 0, 165, 172, 171],
+            [163, 165, 0, 189, 302],
+            [173, 172, 189, 0, 167],
+            [181, 171, 302, 167, 0]]
+        expected_res = (666, [4, 5, 2, 3, 1])
         # when
         res = solution(inp)
         # then
@@ -36,7 +32,7 @@ class TestCaseInsertionSort(unittest.TestCase):
     def check_time_memory_limit(self, res_time, res_memory):
         # given
         expected_memory = 256 * MB
-        expected_time = 2
+        expected_time = 1.05
         # when
         # then
         self.assertLessEqual(res_time, expected_time)
@@ -44,10 +40,28 @@ class TestCaseInsertionSort(unittest.TestCase):
     
     def test_should_fit_time_memory_limit(self):
         # given
-        test_data = [('3 элемента', [(1, 5), (2, 3), (3, 4)]),
-                     ('100 элементов', [(i, i+2) for i in range(100)]),
-                     ('1000 элементов', [(i, i+3) for i in range(1000)]),
-                     ('1000 элементов (пересечение)', [(i, 3*(i+1)) for i in range(1000)])]
+        mat = []
+        for _ in range(13):
+            mat.append([0]*13)
+
+        for i in range(13):
+            for j in range(i+1, 13):
+                mat[i][j] = mat[j][i] = randint(0, 40)
+
+        test_data = [
+            ('3 элемента', [
+                [0, 10, 20],
+                [10, 0, 30],
+                [20, 30, 0],
+            ]),
+            ('5 элементов', [
+                [0, 183, 163, 173, 181],
+                [183, 0, 165, 172, 171],
+                [163, 165, 0, 189, 302],
+                [173, 172, 189, 0, 167],
+                [181, 171, 302, 167, 0]
+            ]),
+            ('13 элементов', mat)]
 
         
         print()

@@ -44,7 +44,7 @@ def write_len_lst_file(path, lst, sep=" "):
         print(*lst, file=out, sep=sep, end='')
 
 
-def write_line_lst_line_file(path, line, lst, sep=" "):
+def write_value_lst_file(path, value, lst, sep=" "):
     with open(path, 'w') as out:
-        print(line, file=out)
+        print(value, file=out)
         print(*lst, file=out, sep=sep, end='')
