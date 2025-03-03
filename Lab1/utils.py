@@ -6,10 +6,14 @@ def read_file(path, *funcs):
     return res
 
 
-def read_lst_file(path, func, sep=" "):
+def read_n_table_file(path):
     with open(path, 'r') as inp:
-        lst = [func(i) for i in inp.readline().split(sep=sep)]
-    return lst
+        n = int(inp.readline())
+        mat = []
+        for _ in range(n):
+            row = [int(x) for x in inp.readline().split()]
+            mat.append(row)
+    return n, mat
 
 
 def read_n_pairs_file(path):
@@ -34,8 +38,9 @@ def write_file(path, ans):
         print(ans, file=out, end='')
 
 
-def write_lst_file(path, lst, sep=" "):
+def write_len_lst_file(path, lst, sep=" "):
     with open(path, 'w') as out:
+        print(len(lst), file=out)
         print(*lst, file=out, sep=sep, end='')
 
 
